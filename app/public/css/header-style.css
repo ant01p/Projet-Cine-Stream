@@ -1,0 +1,110 @@
+/* ===== HEADER CINESTREAM+ ===== */
+
+header {
+    background: linear-gradient(90deg, #1A1A2E, #16213E);
+    border-bottom: 3px solid #E94560;
+    padding: 0px 25px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* logo / titre */
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #E94560;
+    font-family: "Arial", Bold;
+}
+
+.logo {
+    font-size: 1.8rem;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* slogan */
+
+header p {
+    margin: 4px 0 14px 0;
+    color: #888888;
+    font-size: 0.85rem;
+    font-family: "DM Sans", Arial;
+}
+
+/* navigation */
+
+header nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* boutons navigation */
+header nav a[href*="route=index"]::after {
+        content: "VIDEOTHEQUE";
+    }
+
+    header nav a[href*="route=search"]::after {
+        content: "RECHERCHE";
+    }
+
+header nav a {
+    color: #888888;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: 0.2s;
+    font-family: "DM Sans", Arial;
+}
+
+/* ==== RESPONSIVE TABLETTE ==== */
+
+@media (min-width: 480px) {
+
+    .logo {
+    font-size: 2rem;
+    }
+
+    header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    }
+
+    header nav a[href*="route=index"]::after {
+        content: "Vidéo";
+    }
+
+    header nav a[href*="route=search"]::after {
+        content: "Rech";
+    } 
+}
+
+/* ==== RESPONSIVE DESKTOP ==== */
+
+@media (min-width: 768px) {
+
+    header nav a[href*="route=index"]::after {
+        content: "VIDEOTHEQUE";
+    }
+
+    header nav a[href*="route=search"]::after {
+        content: "RECHERCHE";
+    }
+
+    header nav {
+    gap: 15px;
+    }
+}
+
+

@@ -10,6 +10,6 @@ class Repository
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=mysql; dbname=librairy', 'user', 'pass');
+        $this->pdo = new PDO('mysql:host=mysql; dbname=cine', 'user', 'pwd');
     }
 }

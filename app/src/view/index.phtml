@@ -1,0 +1,12 @@
+<?php $title = "index"; ?>
+
+<?php ob_start() ?>
+
+    <?php require_once __DIR__ . '/header.phtml'; ?>
+
+
+
+<?php $content = ob_get_clean() ?>
+
+
+<?php require_once __DIR__ . '/base.phtml'; ?>

@@ -1,0 +1,14 @@
+@import url("header-style.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans",Arial;
+    background: #0d0d0d;
+    color: #888888;
+}
+
