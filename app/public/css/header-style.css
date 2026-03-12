@@ -1,5 +1,4 @@
 /* ===== HEADER CINESTREAM+ ===== */
-
 header {
     background: linear-gradient(90deg, #1A1A2E, #16213E);
     border-bottom: 3px solid #E94560;
@@ -10,7 +9,6 @@ header {
 }
 
 /* logo / titre */
-
 header h1 {
     margin: 0;
     font-size: 2rem;
@@ -30,7 +28,6 @@ header h1 {
 }
 
 /* slogan */
-
 header p {
     margin: 4px 0 14px 0;
     color: #888888;
@@ -39,7 +36,6 @@ header p {
 }
 
 /* navigation */
-
 header nav {
     display: flex;
     flex-direction: column;
@@ -67,7 +63,6 @@ header nav a {
 }
 
 /* ==== RESPONSIVE TABLETTE ==== */
-
 @media (min-width: 480px) {
 
     .logo {
@@ -91,7 +86,6 @@ header nav a {
 }
 
 /* ==== RESPONSIVE DESKTOP ==== */
-
 @media (min-width: 768px) {
 
     header nav a[href*="route=index"]::after {

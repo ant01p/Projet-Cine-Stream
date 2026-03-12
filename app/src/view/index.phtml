@@ -2,11 +2,53 @@
 
 <?php ob_start() ?>
 
-    <?php require_once __DIR__ . '/header.phtml'; ?>
+    <!--- boutons catégories --->
+    <div class = "categories">
 
+        <a href="" class="category">Tous les films</a>
 
+        <?php foreach($genres as $genre) { ?>
+
+            <a href="" class="category"><?php echo $genre->getName() ?></a>
+        
+        <?php } ?>
+
+        <a href="" class="category">n/c</a>
+        <a href="" class="category">👁️</a>
+        <a href="" class="category">🕖</a>
+    </div>
+
+    <!--- Grille films --->
+    <div class="film-grid">
+
+        <?php if(empty($films)) {?>
+            <p class="empty">
+                Commence ta vidéothèque en recherchant un film 🔎
+            </p>
+        <?php } else { ?>
+        <?php foreach($films as $film) {?>
+
+            <!--- Cartes films --->
+            <div class="film-card">
+                <div class="poster-box">
+                    <?php if(!empty($film->getPoster_path())) { ?>
+                        <img src="https://image.tmdb.org/t/p/w300<?=htmlspecialchars($film->getPoster_path()) ?>" alt="affiche de <?= htmlspecialchars($film->getTitle()) ?>">
+                    <?php } else { ?>
+                        <div class="no-poster">🎥</div>
+                    <?php } ?>   
+                </div>
+
+                <div class="info-film-box">
+                    <h3><?= htmlspecialchars($film->getTitle()) ?></h3>
+                    <p><?= htmlspecialchars($film->getRelease_Date()) ?></p>
+                    <span><?= $film->getIsWatched() ? "👁️ Vu" : "🕒 À voir" ?></span>
+                </div>
+                
+            </div>
+        <?php } ?>
+        <?php } ?>
+    </div>
 
 <?php $content = ob_get_clean() ?>
 
-
-<?php require_once __DIR__ . '/base.phtml'; ?>
+<?php require_once __DIR__ . '/base.phtml';

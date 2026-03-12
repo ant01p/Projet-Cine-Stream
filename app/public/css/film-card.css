@@ -1,0 +1,14 @@
+
+.film-card {
+    background: #1A1A1A;
+    border-radius: 12px;
+}
+
+.film-card img{
+object-fit:cover;
+border-radius:8px;
+}
+
+.info-film-box {
+
+}

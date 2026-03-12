@@ -1,2 +1,56 @@
-@import url("general-style.css");
 @import url("header-style.css");
+@import url("general-style.css");
+@import url("film-card.css");
+
+
+.categories {
+    display:flex;
+    align-items: center;
+    gap:10px;
+    margin-bottom:25px;
+    margin-top: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.category {
+    border:1.5px solid #E94560;
+    padding:6px 14px;
+    border-radius:30px;
+    color: #E94560;
+    text-decoration:none;
+    font-size:0.8rem;
+    font-weight:bold;
+    transition:0.3s;
+  
+}
+
+.category:hover {
+    background:#E94560;
+    color:white;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+}
+
+.film-grid {
+    max-width: 1300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+
+/* TABLETTE */
+@media (min-width: 480px) {
+
+    .categories {
+        display:flex;
+        justify-content: center;
+        flex-wrap:wrap;
+    }
+
+    
+}
