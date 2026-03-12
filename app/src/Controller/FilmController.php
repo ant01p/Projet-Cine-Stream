@@ -18,8 +18,15 @@ class FilmController
     public function index()
     {
         $genres = $this->genreRepo->findAll();
-        $films = $this->filmRepo->findAll();
         
+        if(isset($_GET['category'])) {
+            $category = $_GET['category'];
+        } else {
+            $category = "all";
+        }
+
+        $films = $this->filmRepo->findByCategory($category);
+
         require_once __DIR__ . '/../view/index.phtml';
     }
 }

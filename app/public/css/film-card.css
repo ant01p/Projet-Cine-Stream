@@ -4,11 +4,17 @@
     border-radius: 12px;
 }
 
+.poster-box {
+    width: fit-content;
+}
+
 .film-card img{
 object-fit:cover;
 border-radius:8px;
 }
 
-.info-film-box {
-
+.info-film-box p span {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }

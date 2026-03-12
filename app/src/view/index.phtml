@@ -5,17 +5,20 @@
     <!--- boutons catégories --->
     <div class = "categories">
 
-        <a href="" class="category">Tous les films</a>
+        <a href="?route=index&category=all" class="category <?php if($category == 'all') { echo 'active'; } ?>">
+        Tous les films</a>
 
         <?php foreach($genres as $genre) { ?>
 
-            <a href="" class="category"><?php echo $genre->getName() ?></a>
+            <a href="?route=index&category=<?=$genre->getId() ?>" class="category <?php if($category == $genre->getId()) { echo 'active'; } ?>">
+                <?php echo $genre->getName() ?>
+            </a>
         
         <?php } ?>
 
-        <a href="" class="category">n/c</a>
-        <a href="" class="category">👁️</a>
-        <a href="" class="category">🕖</a>
+        <a href="?route=index&category=nc" class="category <?php if($category == 'nc') { echo 'active'; } ?>">n/c</a>
+        <a href="?route=index&category=watched" class="category <?php if($category == 'watched') { echo 'active'; } ?>">👁️</a>
+        <a href="?route=index&category=towatch" class="category <?php if($category == 'towatch') { echo 'active'; } ?>">🕖</a>
     </div>
 
     <!--- Grille films --->
@@ -40,10 +43,9 @@
 
                 <div class="info-film-box">
                     <h3><?= htmlspecialchars($film->getTitle()) ?></h3>
-                    <p><?= htmlspecialchars($film->getRelease_Date()) ?></p>
+                    <p>📅<?= htmlspecialchars($film->getRelease_Date()) ?></p>
                     <span><?= $film->getIsWatched() ? "👁️ Vu" : "🕒 À voir" ?></span>
-                </div>
-                
+                </div>  
             </div>
         <?php } ?>
         <?php } ?>
