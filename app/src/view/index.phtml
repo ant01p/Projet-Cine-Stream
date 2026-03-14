@@ -32,10 +32,10 @@
         <?php foreach($films as $film) {?>
 
             <!--- Cartes films --->
-            <div class="film-card">
+            <a href="index.php?route=show&id=<?= $film->getId() ?>" class="film-card">
                 <div class="poster-box">
                     <?php if(!empty($film->getPoster_path())) { ?>
-                        <img src="https://image.tmdb.org/t/p/w300<?=htmlspecialchars($film->getPoster_path()) ?>" alt="affiche de <?= htmlspecialchars($film->getTitle()) ?>">
+                        <img src="https://image.tmdb.org/t/p/w300<?=htmlspecialchars($film->getPoster_path()) ?>" alt="affiche de <?= htmlspecialchars($film->getTitle()) ?>" class="poster">
                     <?php } else { ?>
                         <div class="no-poster">🎥</div>
                     <?php } ?>   
@@ -46,7 +46,7 @@
                     <p>📅<?= htmlspecialchars($film->getRelease_Date()) ?></p>
                     <span><?= $film->getIsWatched() ? "👁️ Vu" : "🕒 À voir" ?></span>
                 </div>  
-            </div>
+            </a>
         <?php } ?>
         <?php } ?>
     </div>

@@ -16,4 +16,15 @@ class GenreRepository extends Repository
 
         return $genres;
     }
+
+     public function find($id)
+    {
+        $sql = "SELECT * FROM genre WHERE id = :id";
+        $request = $this->pdo->prepare($sql);
+        $request->execute(['id' => $id]);
+        $request->setFetchMode(PDO::FETCH_CLASS, Genre::class);
+        $genre = $request->fetch();
+
+        return $genre;
+    }
 }

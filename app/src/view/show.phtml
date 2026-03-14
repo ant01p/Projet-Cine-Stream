@@ -1,0 +1,70 @@
+<?php $title="show"; ?>
+
+<?php ob_start() ?>
+
+<div class="show-page">
+    <div class="show-card">
+        <div class="show-inner-card-top">
+            <div class="show-poster-box">
+                <?php if (!empty($film->getPoster_path())) { ?>
+                    <img
+                        src="https://image.tmdb.org/t/p/w300<?= htmlspecialchars($film->getPoster_path()) ?>"
+                        alt="affiche de <?= htmlspecialchars($film->getTitle()) ?>"
+                        class="show-poster"
+                    >
+                <?php } else { ?>
+                    <div class="show-no-poster">🎥</div>
+                <?php } ?>
+            </div>
+            <div class="show-content">
+                <div class="show-content-top">
+                    <h3 class="show-title"><?= htmlspecialchars($film->getTitle()) ?></h3>
+
+                </div>
+                <div class="show-meta">
+                    <span>📅<?php if (!empty($film->getRelease_date())) {
+                                    echo htmlspecialchars($film->getRelease_date());
+                                } else {
+                                    echo "n/c";
+                                }?>
+                    </span>            
+                    <span>|</span>
+                    <span>⏱️<?php if (!empty($film->getRuntime())) {
+                                    echo htmlspecialchars($film->getRuntime()) . " min";
+                                } else {
+                                    echo "Durée n/c";
+                                }?>
+                    </span>        
+                    <span>|</span>
+                    <span>🎭<?php if ($film->getGenre_name() !== NULL) {
+                                        echo htmlspecialchars($film->getGenre_name());
+                                    } else {
+                         echo "Genre n/c";
+                    }?>
+                    </span>
+                    <span>|</span>
+                    <span><?= $film->getIsWatched() ? "👁️ Vu" : "🕖 À voir" ?></span>
+                </div>
+            </div> <!-- FIN SHOW-CONTENT -->
+           
+            <div class="show-content-comment">
+                <?php if (!empty($film->getDescription())) { ?>
+                    <p><?=htmlspecialchars($film->getDescription())?></p>
+                <?php } else { ?>
+                    <p>Aucune description personnelle.</p>
+                <?php } ?>
+            </div>
+        </div> <!-- fin inner-card-top -->
+    <div class="synopsis-block">
+        <?php if (!empty($film->getOverview())) { ?>
+        <p><?= (htmlspecialchars($film->getOverview())) ?></p>
+        <?php } else { ?>
+            <p>Aucun synopsis disponible.</p>
+        <?php } ?>
+    </div>      
+</div>
+</div>
+
+<?php $content = ob_get_clean() ?>
+
+<?php require_once __DIR__ . '/base.phtml';

@@ -14,5 +14,7 @@ if(isset($_GET['route'])) {
 
 if ($route === 'index') {
     $filmController->index();
+} elseif ($route === 'show') {
+    $filmController->show();
 }
 

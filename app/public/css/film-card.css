@@ -1,20 +1,28 @@
 
 .film-card {
-    background: #1A1A1A;
     border-radius: 12px;
+    text-decoration: none;
+    margin-bottom: 20px;
+   
 }
 
 .poster-box {
-    width: fit-content;
+    
+    border-radius: 12px;
 }
 
-.film-card img{
-object-fit:cover;
-border-radius:8px;
+.poster {
+    border-radius: 12px 12px 0 0;
 }
-
-.info-film-box p span {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+.info-film-box {
+    background: #1A1A1A;
+    border-radius:0 0 12px 12px;
+    padding-left: 10px;
+}
+.info-film-box span {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.info-film-box h3 {
+    padding-top: 5px;
 }

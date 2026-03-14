@@ -29,4 +29,14 @@ class FilmController
 
         require_once __DIR__ . '/../view/index.phtml';
     }
+
+     public function show()
+    {
+        $id = $_GET['id'];
+
+        $film = $this->filmRepo->findFilm($id);
+
+        require_once __DIR__ . '/../view/show.phtml';
+    }
+
 }

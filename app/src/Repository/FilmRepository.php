@@ -50,6 +50,33 @@ class FilmRepository extends Repository
 
         return $films;
     }
+
+    public function find($id)
+    {
+        $sql = "SELECT * FROM film WHERE id = :id";
+        $request = $this->pdo->prepare($sql);
+        $request->execute(['id' => $id]);
+        $request->setFetchMode(PDO::FETCH_CLASS, Film::class);
+        $film = $request->fetch();
+
+        return $film;
+    }
+
+     public function findFilm($id)
+    {
+        $sql = "SELECT F.*, G.name AS genre_name
+                FROM film F
+                LEFT JOIN genre G ON F.genre_id = G.id
+                WHERE F.id = :id";
+
+        $request = $this->pdo->prepare($sql);
+        $request->execute(['id' => $id]);
+        $request->setFetchMode(PDO::FETCH_CLASS, Film::class);
+        $film = $request->fetch();
+
+        return $film;
+    }   
 }
+
 
 
