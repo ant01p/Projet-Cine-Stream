@@ -39,4 +39,19 @@ class FilmController
         require_once __DIR__ . '/../view/show.phtml';
     }
 
+     public function delete()
+    {
+        if (empty($_GET['id'])) {
+            header('Location: index.php?route=index');
+        exit();
+        }
+        
+        $film = $this->filmRepo->findFilm((int) $_GET['id']);
+
+        $this->filmRepo->deleteFilm($film->getId());
+        
+        header('Location: index.php?message=supprimé');
+        exit();
+    }
+
 }

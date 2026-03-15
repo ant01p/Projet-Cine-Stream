@@ -75,7 +75,14 @@ class FilmRepository extends Repository
         $film = $request->fetch();
 
         return $film;
-    }   
+    }
+
+    public function deleteFilm($id)
+    {
+        $sql = 'DELETE FROM film WHERE id = :id';
+        $request = $this->pdo->prepare($sql);
+        $request->execute(array('id' => $id));
+    }
 }
 
 

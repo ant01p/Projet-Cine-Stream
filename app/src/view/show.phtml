@@ -19,7 +19,10 @@
             <div class="show-content">
                 <div class="show-content-top">
                     <h3 class="show-title"><?= htmlspecialchars($film->getTitle()) ?></h3>
-
+                    <div class="show-actions">
+                        <a href="#" class="update-btn">✏️</a>
+                        <a class="delete-btn" href="index.php?route=delete&id=<?= htmlspecialchars($film->getId()) ?>"onclick="return confirm('Voulez-vous vraiment supprimer ce film ?');">❌</a>
+                    </div> 
                 </div>
                 <div class="show-meta">
                     <span>📅<?php if (!empty($film->getRelease_date())) {

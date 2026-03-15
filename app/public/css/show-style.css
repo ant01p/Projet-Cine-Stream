@@ -23,15 +23,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-   
-    
     border-radius: 16px 16px 0 0;
     padding: 18px;
- 
-   
 }
 
-/* bloc affiche */
 .show-poster-box {
     width: 100%;
     max-width: 260px;
@@ -83,11 +78,38 @@
     word-break: break-word;
 }
 
+/* boutons delete & update */
 .show-actions {
     display: flex;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+}
+
+.update-btn,
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 999px;
+    border: 1.5px solid #E94560;
+    background: transparent;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.update-btn:hover,
+.delete-btn:hover,
+.update-btn:focus,
+.delete-btn:focus {
+    background: #E94560;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
 }
 
 .show-meta {
@@ -123,7 +145,6 @@
 /* synopsis */
 .synopsis-block {
     margin-top: 20px;
-   
     padding: 18px;
 }
 
@@ -159,17 +180,8 @@
     }
 
     .show-poster-box {
-        grid-area: poster;
         max-width: 240px;
         margin: 0;
-    }
-
-    .show-content {
-        grid-area: content;
-    }
-
-    .show-content-comment {
-        grid-area: comment;
     }
 
     .show-title {
