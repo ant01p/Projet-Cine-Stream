@@ -111,4 +111,21 @@ class FilmController
         }
         require_once __DIR__ . '/../view/search.phtml';
     }
+
+    public function showTmdb()
+    {
+        if (empty($_GET['id'])) {
+            header('Location: index.php?route=search');
+            exit();
+        }
+
+        $tmdb = new Tmdb;
+        $film = $tmdb->getFilmByTmdbId((int) $_GET['id']);
+
+        if (!$film || isset($film['success'])) {
+            header('Location: index.php?route=search&message=film_introuvable');
+            exit();
+        }
+        require_once __DIR__ . '/../view/showTmdb.phtml';
+    }
 }

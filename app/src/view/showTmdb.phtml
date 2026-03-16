@@ -1,0 +1,112 @@
+<?php $title = "Fiche TMDB"; ?>
+
+<?php ob_start() ?>
+
+    <div class="show-page">
+        <div class="show-card">
+
+            <div class="show-inner-card-top">
+                <div class="show-poster-box">
+                    <?php if (!empty($film['poster_path'])) : ?>
+                        <img src="<?= Cine\App\Service\Tmdb\Tmdb::IMG_URL . htmlspecialchars($film['poster_path']) ?>"
+                            alt="Affiche de <?= htmlspecialchars($film['title']) ?>"
+                            class="show-poster"
+                        >
+
+                    <?php else : ?>
+
+                    <div class="show-no-poster">🎥</div>
+
+                    <?php endif ?>
+                </div>
+
+                <div class="show-content">
+                    <div class="show-content-top">
+                        <h2 class="show-title"><?= htmlspecialchars($film['title']) ?></h2>
+                    </div>
+
+                    <div class="show-meta">
+                        <span>
+                            📅
+                            <?php
+                                if (!empty($film['release_date'])) {
+                                    echo htmlspecialchars(substr($film['release_date'], 0, 4));
+                                } else {
+                                    echo 'n/c';
+                                }
+                            ?>
+                        </span>
+
+                        <span>|</span>
+
+                        <span>
+                            ⏱️
+                            <?php
+                                if (!empty($film['runtime'])) {
+                                    echo htmlspecialchars($film['runtime']) . ' min';
+                                } else {
+                                    echo 'Durée n/c';
+                                }
+                            ?>
+                        </span>
+
+                        <span>|</span>
+
+                        <span>
+                            🎭
+                        <?php
+                            if (!empty($film['genres'])) {
+                                $genres = [];
+
+                                foreach ($film['genres'] as $genre) {
+                                    $genres[] = $genre['name'];
+                                }
+
+                                echo htmlspecialchars(implode(', ', $genres));
+                            } else {
+                                echo 'Genre n/c';
+                            }
+                        ?>
+                    </span>
+                </div>
+
+                <div class="tmdb-rating-box">
+                    <p>
+                        ⭐
+                        <?php
+                            if (isset($film['vote_average'])) {
+                                echo htmlspecialchars(number_format($film['vote_average'], 1)) . '/10';
+                            } else {
+                                echo 'Note n/c';
+                            }
+                        ?>
+                        <?php
+                            if (isset($film['vote_count'])) {
+                                echo ' (' . htmlspecialchars($film['vote_count']) . ' votes)';
+                            }
+                        ?>
+                    </p>
+                </div>
+            </div>
+
+            <div class="show-content-comment">
+                <p>Synopsis TMDB</p>
+            </div>
+        </div>
+
+        <div class="synopsis-block">
+            <?php if (!empty($film['overview'])) : ?>
+                <p><?= htmlspecialchars($film['overview']) ?></p>
+            <?php else : ?>
+                <p>Aucun synopsis disponible.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="return-box">
+        <a href="javascript:history.back();" class="return-btn">Retour a la page précédente</a>
+    </div>
+</div>
+
+<?php $content = ob_get_clean() ?>
+
+<?php require_once __DIR__ . '/base.phtml'; ?>

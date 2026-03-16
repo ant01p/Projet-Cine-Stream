@@ -21,6 +21,7 @@
         <?php foreach ($results as $film) : ?>
 
         <div class="film-card">
+            <a href="index.php?route=showTmdb&id=<?= htmlspecialchars($film['id']) ?>" class="film-card-search">
             <div class="poster-box">
                 <?php if(!empty($film['poster_path'])) : ?>
 
@@ -42,6 +43,7 @@
                 <a class="href="">➕</a>
             </div>
         </div>
+        </a>
         <?php endforeach; ?>
 
     <?php endif; ?>

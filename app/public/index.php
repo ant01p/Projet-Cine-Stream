@@ -22,5 +22,7 @@ if ($route === 'index') {
     $filmController->update();
 } elseif ($route === 'search') {
     $filmController->search();
+} elseif ($route === 'showTmdb') {
+    $filmController->showTmdb();
 }
 
