@@ -13,6 +13,52 @@ body {
     background: #0d0d0d;
     color: #888888;
     position: relative;
-    
-    
 }
+
+.search-form {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.search-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1.5px solid #E94560;
+    border-radius: 30px;
+    color: #E94560;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: 0.3s;
+    background-color: #0d0d0d;
+}
+
+.search-btn:hover {
+    background: #E94560;
+    color: white;
+}
+
+.search-input {
+    padding: 12px 18px;
+    border: 2px solid #333;
+    border-radius: 30px;
+    background: #1A1A1A;
+    color: white;
+    font-size: 1rem;
+    font-family: "DM Sans", Arial, sans-serif;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-input::placeholder {
+    color: #888888;
+}
+
+.info-film-box-search {
+    display: flex;
+}
+

@@ -3,6 +3,7 @@ namespace Cine\App\Controller;
 
 use Cine\App\Repository\FilmRepository;
 use Cine\App\Repository\GenreRepository;
+use Cine\App\Service\Tmdb\Tmdb;
 
 class FilmController
 {
@@ -87,5 +88,27 @@ class FilmController
             exit();
         }
         require_once __DIR__ . '/../view/update.phtml';
-    }   
+    }
+
+    public function search()
+    {
+        $results = null;
+        $search = '';
+        if(isset($_GET['search'])) {
+            $search = trim($_GET['search']);
+        }
+        
+
+        if ($search !== '') {
+            $tmdb = new Tmdb;
+            $reponse = $tmdb->getFilmByTmdbSearch($search);
+
+            if(isset($reponse['results'])) {
+                $results = $reponse['results'];
+            } else {
+                $results = [];
+            }
+        }
+        require_once __DIR__ . '/../view/search.phtml';
+    }
 }

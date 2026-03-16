@@ -7,8 +7,15 @@
 }
 
 .poster-box {
-    
-    border-radius: 12px;
+    overflow: hidden;
+    border-radius: 10px;
+    border-radius: 12px 12px 0 0;
+}
+
+.poster-box img {
+   
+    height: 100%;
+    object-fit: cover; 
 }
 
 .poster {

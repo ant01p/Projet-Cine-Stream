@@ -2,22 +2,50 @@
 
 <?php ob_start() ?>
 
-    <form action="index.php" method="get" class="search-form">
-        <input type="text" name="search" class="search-input" placeholder="Rechercher un film">
+    <form action="index.php?route=search.phtml" method="get" class="search-form">
+        <input type="hidden" name="route" value="search">
 
+        <input type="text" name="search" class="search-input" placeholder="Rechercher un film" value="<?= htmlspecialchars($search) ?>">
 
         <input type="submit" value="Rechercher" class="search-btn">
-
-
-
     </form>
 
+    <div class="film-grid">
 
+        <?php if ($results === []) : ?>
 
+            <p>Aucun film trouvé</p>
 
+        <?php elseif ($results !== null) :?>
 
-    bbbbb
+        <?php foreach ($results as $film) : ?>
 
+        <div class="film-card">
+            <div class="poster-box">
+                <?php if(!empty($film['poster_path'])) : ?>
+
+                    <img class="poster"src="<?= Cine\App\Service\Tmdb\Tmdb::IMG_URL . $film['poster_path'] ?>">
+
+                <?php else : ?>
+                    🎥
+                <?php endif  ?>
+            </div>
+
+            <div class="info-film-box">
+                <h3><?= htmlspecialchars($film['title']) ?></h3>
+                <?php if (!empty($film['release_date'])) : ?>
+                    <p><?= htmlspecialchars(substr($film['release_date'], 0, 4)) ?></p>
+                <?php else : ?>
+                    <p>Année inconnue</p>
+                <?php endif ?>
+
+                <a class="href="">➕</a>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
+    <?php endif; ?>
+    </div>
 
 <?php $content = ob_get_clean() ?>
 

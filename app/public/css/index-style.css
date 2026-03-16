@@ -55,24 +55,18 @@
 }
 
 .film-grid {
-        display: grid; 
-        grid-template-columns: 1fr;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        padding: 0 15px;
-}
-.film-card {
-    width: 100% !important;
-    max-width: 100% !important;
+    display: grid; 
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0 15px;
 }
 
 .poster {
     width: 100% !important;
-    height: auto !important;
     display: block !important;
 }
-
 
 /* TABLETTE */
 @media (min-width: 480px) {
