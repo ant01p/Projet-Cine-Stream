@@ -1,0 +1,24 @@
+<?php $title = "Search"; ?>
+
+<?php ob_start() ?>
+
+    <form action="index.php" method="get" class="search-form">
+        <input type="text" name="search" class="search-input" placeholder="Rechercher un film">
+
+
+        <input type="submit" value="Rechercher" class="search-btn">
+
+
+
+    </form>
+
+
+
+
+
+    bbbbb
+
+
+<?php $content = ob_get_clean() ?>
+
+<?php require_once __DIR__ . '/base.phtml';

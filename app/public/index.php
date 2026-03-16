@@ -18,5 +18,9 @@ if ($route === 'index') {
     $filmController->show();
 } elseif ($route === 'delete') {
     $filmController->delete();
+} elseif ($route === 'update') {
+    $filmController->update();
+} elseif ($route === 'search') {
+    $filmController->search();
 }
 

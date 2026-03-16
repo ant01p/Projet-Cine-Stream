@@ -83,6 +83,22 @@ class FilmRepository extends Repository
         $request = $this->pdo->prepare($sql);
         $request->execute(array('id' => $id));
     }
+
+    public function updateFilm($id, $genreId, $description, $isWatched)
+{
+    if ($genreId === '') {
+        $genreId = null;
+    }
+
+    $sql = "UPDATE film SET genre_id = :genre_id, description = :description, isWatched = :isWatched WHERE id = :id";
+    $request = $this->pdo->prepare($sql);
+    $request->execute([
+        'genre_id' => $genreId,
+        'description' => $description,
+        'isWatched' => $isWatched,
+        'id' => $id
+    ]);
+}
 }
 
 

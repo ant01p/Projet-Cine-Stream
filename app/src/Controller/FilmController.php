@@ -54,4 +54,38 @@ class FilmController
         exit();
     }
 
+     public function update()
+    {
+        if (empty($_GET['id'])) {
+            header('Location: index.php?route=index');
+        exit();
+        }
+
+        $id = (int) $_GET['id'];
+
+        $film = $this->filmRepo->findFilm($id);
+        $genres = $this->genreRepo->findAll();
+
+        if (!empty($_POST)) {
+            if (isset($_POST['genre_id']) && $_POST['genre_id'] !== '') {
+                $genreId = $_POST['genre_id'];
+            } else {
+                $genreId = null;
+            }
+
+            $description = trim($_POST['description']);
+
+            if (isset($_POST['isWatched'])) {
+                $isWatched = $_POST['isWatched'];
+            } else {
+                $isWatched = 0;
+            }
+
+            $this->filmRepo->updateFilm($id, $genreId, $description, $isWatched);
+
+            header('Location: index.php?route=show&id=' . $id . '&message=updated');
+            exit();
+        }
+        require_once __DIR__ . '/../view/update.phtml';
+    }   
 }

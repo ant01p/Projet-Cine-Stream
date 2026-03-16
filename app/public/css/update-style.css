@@ -1,0 +1,50 @@
+.genre-status-box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    
+    padding-right: 50px;
+}
+
+.return-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+.return-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1.5px solid #E94560;
+    border-radius: 30px;
+    color: #E94560;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.return-btn:hover {
+    background: #E94560;
+    color: #888888;
+}
+
+.submit-btn {
+    background: linear-gradient(180deg, #1A1A2E, #16213E);
+    color: #888888;
+    border: 1.5px solid #E94560;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: bold;
+     padding: 10px 22px;
+}
+
+.submit-btn:hover {
+    background: #E94560;
+    color: #888888;
+}
