@@ -1,12 +1,9 @@
-@import url("header-style.css");
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-
 
 body {
     font-family: "DM Sans",Arial;
@@ -22,24 +19,6 @@ body {
     gap: 10px;
     margin-bottom: 20px;
     margin-top: 20px;
-}
-
-.search-btn {
-    display: inline-block;
-    text-decoration: none;
-    border: 1.5px solid #E94560;
-    border-radius: 30px;
-    color: #E94560;
-    padding: 10px 22px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: 0.3s;
-    background-color: #0d0d0d;
-}
-
-.search-btn:hover {
-    background: #E94560;
-    color: white;
 }
 
 .search-input {
@@ -58,7 +37,67 @@ body {
     color: #888888;
 }
 
-.info-film-box-search {
-    display: flex;
+.search-input:focus {
+    border-color: #E94560;
 }
 
+.search-btn,
+.submit-btn,
+.return-btn {
+    
+    text-decoration: none;
+    border: 1.5px solid #E94560;
+    border-radius: 30px;
+    color: #E94560;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: 0.3s;
+    text-align: center;
+    background: transparent;
+}
+
+.add-btn,
+.update-btn,
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 999px;
+    border: 2px solid #E94560;
+    background: transparent;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover,
+.submit-btn:hover,
+.return-btn:hover,
+.update-btn:hover,
+.delete-btn:hover,
+.add-btn:hover,
+.update-btn:focus,
+.delete-btn:focus,
+.add-btn:focus {
+    background: #E94560;
+    color: white;
+    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+}
+
+.update-success p {
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    color: #0f6104a1;
+}
+
+.add-success p {
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    color: #0f6104a1;
+}

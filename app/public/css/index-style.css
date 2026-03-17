@@ -1,8 +1,84 @@
 @import url("header-style.css");
 @import url("general-style.css");
-@import url("film-card.css");
 
 
+/* CARTES FILMS INDEX & SEARCH */
+.film-card {
+    border-radius: 12px;
+    text-decoration: none;
+    margin-bottom: 20px;
+     
+}
+
+.poster-box {
+    overflow: hidden;
+    
+    border-radius: 12px 12px 0 0;
+    min-height: 250px;
+}
+
+.poster-box img {
+    height: 100%;
+    object-fit: cover; 
+}
+
+.poster {
+    border-radius: 12px 12px 0 0;
+    width: 100% !important;
+    display: block !important;
+}
+
+.no-poster {
+    display: flex;
+    justify-content: center;
+}
+
+.no-poster a {
+    text-decoration: none;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.info-film-box {
+    background: #1A1A1A;
+    border-radius:0 0 12px 12px;
+    padding-left: 10px;
+    color: #888888;
+    text-decoration: none;
+}
+
+.date-status-box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.date-add-box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+
+.date-add-box a {
+    text-decoration: none;
+}
+
+h3 {
+    color: white;
+    padding-top: 3px;
+    text-decoration: none;
+}
 .categories {
     display:flex;
     align-items: center;
@@ -11,7 +87,6 @@
     margin-top: 12px;
     overflow-x:auto;
     white-space: nowrap;
-    
 }
 
 ::-webkit-scrollbar {
@@ -49,11 +124,6 @@
     color:white;
 }
 
-.empty {
-    display: flex;
-    justify-content: center;
-}
-
 .film-grid {
     display: grid; 
     grid-template-columns: 1fr;
@@ -63,11 +133,6 @@
     padding: 0 15px;
 }
 
-.poster {
-    width: 100% !important;
-    display: block !important;
-}
-
 /* TABLETTE */
 @media (min-width: 480px) {
 
@@ -75,19 +140,17 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 0 20px;
-    }
+}
 
 .categories {
     justify-content: center;
     flex-wrap: wrap;
     white-space: normal;
-    }
+}
 
-    .empty {
-    display: flex;
-    justify-content: center;
+.empty {
     grid-column: span 2;
-    }
+}
 }
 
 /* DESKTOP */
@@ -98,20 +161,17 @@
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 30px;
-    }
+}
 
-.categories {
-    justify-content: flex;
-    }
 
 .film-card:hover {
     transform: scale(1.03);
     transition: 0.3s;
-    }
+}
 
-    .empty {
-    display: flex;
-    justify-content: center;
+.empty {
+    
     grid-column: 1/-1 ;
-    }
+}
+
 }

@@ -111,4 +111,61 @@ class FilmController
         }
         require_once __DIR__ . '/../view/search.phtml';
     }
+
+    public function add()
+    {
+        if (empty($_GET['tmdb_id'])) {
+            header('Location: index.php?route=search');
+            exit();
+        }
+
+        $tmdbId = (int) $_GET['tmdb_id'];
+
+        $filmInDb = $this->filmRepo->findByTmdbId($tmdbId);
+
+        if ($filmInDb) {
+            header('Location: index.php?route=show&id=' . $filmInDb->getId() . '&message=deja_ajoute');
+            exit();
+        }
+
+        $tmdb = new Tmdb;
+        $filmTmdb = $tmdb->getFilmByTmdbId($tmdbId);
+
+        if (!$filmTmdb || !isset($filmTmdb['id'])) {
+            header('Location: index.php?route=search&message=film_not_found');
+            exit();
+        }
+
+        $releaseDate = null;
+        if (!empty($filmTmdb['release_date'])) {
+            $releaseDate = substr($filmTmdb['release_date'], 0, 4);
+        }
+
+        $newFilmId = $this->filmRepo->addFilm(
+            $filmTmdb['id'],
+            $filmTmdb['title'],
+            $filmTmdb['poster_path'] ?? null,
+            $releaseDate,
+            $filmTmdb['runtime'] ?? null,
+            $filmTmdb['overview'] ?? null
+        );
+
+        header('Location: index.php?route=update&id=' . $newFilmId . '&message=added');
+        exit();
+    }
+
+    public function showTmdb()
+    {
+        if (empty($_GET['tmdb_id'])) {
+            header('Location: index.php?route=search');
+            exit();
+        }
+
+        $tmdbId = (int) $_GET['tmdb_id'];
+
+        $tmdb = new Tmdb();
+        $film = $tmdb->getFilmByTmdbId($tmdbId);
+
+        require_once __DIR__ . '/../view/showTmdb.phtml';
+    }
 }

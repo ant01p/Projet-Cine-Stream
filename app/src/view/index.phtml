@@ -42,9 +42,11 @@
                 </div>
 
                 <div class="info-film-box">
-                    <h3><?= htmlspecialchars($film->getTitle()) ?></h3>
-                    <p>📅<?= htmlspecialchars($film->getRelease_Date()) ?></p>
-                    <span><?= $film->getIsWatched() ? "👁️ Vu" : "🕒 À voir" ?></span>
+                        <h3><?= htmlspecialchars($film->getTitle()) ?></h3>
+                    <div class="date-status-box">
+                        <p>📅<?= htmlspecialchars($film->getRelease_Date() ?? '') ?></p>
+                        <span><?= $film->getIsWatched() ? "👁️" : "🕒" ?></span>
+                    </div>
                 </div>  
             </a>
         <?php } ?>

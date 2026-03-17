@@ -2,12 +2,12 @@
 
 <?php ob_start() ?>
 
-    <form action="index.php?route=search.phtml" method="get" class="search-form">
+    <form action="index.php" method="get" class="search-form">
         <input type="hidden" name="route" value="search">
 
         <input type="text" name="search" class="search-input" placeholder="Rechercher un film" value="<?= htmlspecialchars($search) ?>">
 
-        <input type="submit" value="Rechercher" class="search-btn">
+        <input type="submit" value="Rechercher" class="search-btn"> <!-- BOUTONS DANS GENERAL-STYLE.CSS -->
     </form>
 
     <div class="film-grid">
@@ -21,25 +21,29 @@
         <?php foreach ($results as $film) : ?>
 
         <div class="film-card">
-            <div class="poster-box">
-                <?php if(!empty($film['poster_path'])) : ?>
+            <a href="index.php?route=showTmdb&tmdb_id=<?= htmlspecialchars($film['id']) ?>">
+                <div class="poster-box">
+                    <?php if(!empty($film['poster_path'])) : ?>
 
-                    <img class="poster"src="<?= Cine\App\Service\Tmdb\Tmdb::IMG_URL . $film['poster_path'] ?>">
+                        <img class="poster"src="<?= Cine\App\Service\Tmdb\Tmdb::IMG_URL . $film['poster_path'] ?>">
 
-                <?php else : ?>
-                    🎥
-                <?php endif  ?>
-            </div>
+                    <?php else : ?>
+                       <div class="no-poster">🎥</div> 
+                    <?php endif  ?>
+                </div>
+            </a>
 
             <div class="info-film-box">
                 <h3><?= htmlspecialchars($film['title']) ?></h3>
-                <?php if (!empty($film['release_date'])) : ?>
-                    <p><?= htmlspecialchars(substr($film['release_date'], 0, 4)) ?></p>
-                <?php else : ?>
-                    <p>Année inconnue</p>
-                <?php endif ?>
-
-                <a class="href="">➕</a>
+                <div class="date-add-box">
+                    <?php if (!empty($film['release_date'])) : ?>
+                        <p>📅<?= htmlspecialchars(substr($film['release_date'], 0, 4)) ?></p>
+                    <?php else : ?>
+                        <p>Année inconnue</p>
+                    <?php endif ?>
+                    
+                    <a class="add-btn-search" href="index.php?route=add&tmdb_id=<?= htmlspecialchars($film['id']) ?>">➕</a>
+                </div>
             </div>
         </div>
         <?php endforeach; ?>

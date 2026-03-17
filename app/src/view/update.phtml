@@ -2,131 +2,97 @@
 
 <?php ob_start() ?>
 
-<div class="show-page">
-    <div class="show-card">
-        <div class="show-inner-card-top">
+    <div class="add-success"> <!-- CSS.ADD-SUCCESS = GENERAL-STYLE.CSS -->
+        <?php if (($_GET['message'] ?? '') === 'added') { ?>
+            <p>Film ajouté avec succès</p>
+        <?php } ?>
+    </div>
 
-            <div class="show-poster-box">
-                <?php if (!empty($film->getPoster_path())) { ?>
-                    <img
-                        src="https://image.tmdb.org/t/p/w300<?= htmlspecialchars($film->getPoster_path()) ?>"
-                        alt="affiche de <?= htmlspecialchars($film->getTitle()) ?>"
-                        class="show-poster"
-                    >
-                <?php } else { ?>
-                    <div class="show-no-poster">🎥</div>
-                <?php } ?>
-            </div>
-
-            <div class="show-content">
-                <form action="index.php?route=update&id=<?= htmlspecialchars($film->getId()) ?>" method="post" class="update-form">
-                    <div class="show-content-top">
-                    <h2 class="show-title"><?= htmlspecialchars($film->getTitle()) ?></h2>
-                    <div class="show-actions">
-                        <button type="submit" class="update-btn">✏️</button>
-                        <a class="delete-btn" href="index.php?route=delete&id=<?= htmlspecialchars($film->getId()) ?>"onclick="return confirm('Voulez-vous vraiment supprimer ce film ?');">❌</a>
-                    </div> 
+    <div class="show-page">
+        <div class="show-card">
+            <div class="show-inner-card-top">
+                <div class="show-poster-box">
+                    <?php if (!empty($film->getPoster_path())) { ?>
+                        <img src="https://image.tmdb.org/t/p/w300<?= htmlspecialchars($film->getPoster_path()) ?>"
+                            alt="affiche de <?= htmlspecialchars($film->getTitle()) ?>"
+                            class="show-poster"
+                        >
+                    <?php } else { ?>
+                        <div class="show-no-poster">🎥</div>
+                    <?php } ?>
                 </div>
 
-                <div class="show-meta">
-                    <span>
-                        📅
-                        <?php
-                            if (!empty($film->getRelease_date())) {
-                                echo htmlspecialchars($film->getRelease_date());
-                            } else {
-                                echo "n/c";
-                            }
-                        ?>
-                    </span>
-                    <span>|</span>
-                    <span>
-                        ⏱️
-                        <?php
-                            if (!empty($film->getRuntime())) {
-                                echo htmlspecialchars($film->getRuntime()) . " min";
-                            } else {
-                                echo "Durée n/c";
-                            }
-                        ?>
-                    </span>
-                    <span>|</span>
-                    <span>🎭<?php if ($film->getGenre_name() !== NULL) {
-                                        echo htmlspecialchars($film->getGenre_name());
-                                    } else {
-                         echo "Genre n/c";
-                    }?>
-                    </span>
-                </div>
-
-               
-
-                    <div class="genre-status-box">
-                    
-                        <select name="genre_id" id="genre_id">
-                            <option value="selected" selected disabled>choisir un genre dans la liste:</option>
-
-                            <?php foreach ($genres as $genre) { ?>
-                                <option
-                                    value="<?= htmlspecialchars($genre->getId()) ?>"
-                                    
-                                >
-                                    <?= htmlspecialchars($genre->getName()) ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                        <div class="form-group">
-                        
-
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input
-                                    type="radio"
-                                    name="isWatched"
-                                    value="1"
-                                    <?php if ($film->getIsWatched() == 1) { echo "checked"; } ?>
-                                >
-                                👁️ 
-                            </label>
-
-                            <label class="radio-option">
-                                <input
-                                    type="radio"
-                                    name="isWatched"
-                                    value="0"
-                                    <?php if ($film->getIsWatched() == 0) { echo "checked"; } ?>
-                                >
-                                🕖 
-                            </label>
+                <div class="show-content">
+                    <form action="index.php?route=update&id=<?= htmlspecialchars($film->getId()) ?>" method="post" class="update-form">
+                        <div class="show-content-top">
+                            <h2 class="show-title"><?= htmlspecialchars($film->getTitle()) ?></h2>
                         </div>
-                    </div>
-                    </div>
+                        <div class="show-meta-status">
+                            <div class="show-meta">
+                                <span>📅 <?php if (!empty($film->getRelease_date())) {
+                                                    echo htmlspecialchars($film->getRelease_date());
+                                                } else {
+                                                    echo "n/c";
+                                                }?> 
+                                </span>
+                                <span>|</span>
+                                <span>⏱️<?php if (!empty($film->getRuntime())) {
+                                                    echo htmlspecialchars($film->getRuntime()) . " min";
+                                                } else {
+                                                    echo "Durée n/c";
+                                                }?>    
+                                </span>
+                                <span>|</span>
+                                <span>🎭<?php if ($film->getGenre_name() !== NULL) {
+                                                    echo htmlspecialchars($film->getGenre_name());
+                                                } else {
+                                                    echo "Genre n/c";
+                                                }?>
+                                </span>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        
-                        <textarea name="description" id="description" rows="6"><?= htmlspecialchars($film->getDescription()) ?></textarea>
-                    </div>
-                    <input type="submit" value="Enregistrer" class="submit-btn">
-                </form>
-        </div>
+                        <div class="genre-status-box">
+                            <select name="genre_id" id="genre_id">
+                                <option value="" selected disabled>choisir un genre dans la liste:</option>
+                                <option value="">n/c</option>
+                                <?php foreach ($genres as $genre) { ?>
+                                    <option value="<?= htmlspecialchars($genre->getId()) ?>"
+                                        <?php if ($film->getGenre_id() == $genre->getId()) { echo 'selected'; } ?>>
+                                        <?= htmlspecialchars($genre->getName()) ?>
+                                    </option>
+                                <?php } ?>
+                            </select> 
+                    <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="isWatched"value="1"<?php if ($film->getIsWatched() == 1) { echo "checked"; } ?>>👁️  
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio"name="isWatched"value="0"<?php if ($film->getIsWatched() == 0) { echo "checked"; } ?>>🕖    
+                                    </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="update-comment" name="description" id="description" rows="6"><?= htmlspecialchars($film->getDescription() ?? '') ?></textarea>
+                        </div>
+                        <input type="submit" value="Enregistrer" class="submit-btn"> <!-- BOUTONS DANS GENERAL-STYLE.CSS -->
+                    </form>
+                </div>
+
                 <div class="synopsis-block">
                     <?php if (!empty($film->getOverview())) { ?>
                         <p><?= (htmlspecialchars($film->getOverview())) ?></p>
                     <?php } else { ?>
                         <p>Aucun synopsis disponible.</p>
                     <?php } ?>
-                </div>
-                
+                </div> 
             </div>
+        </div>
 
-       
+        <div class="return-box"> <!-- BOUTONS DANS GENERAL-STYLE.CSS -->
+            <a href="javascript:history.back();" class="return-btn">Retour a la page précédente</a>
+        </div>
     </div>
-    <div class="return-box">
-                    <a href="index.php?route=show&id=<?= htmlspecialchars($film->getId()) ?>" class="return-btn">
-                        Retour à la page précédente
-                    </a>
-                </div>
-</div>
 
 <?php $content = ob_get_clean() ?>
 

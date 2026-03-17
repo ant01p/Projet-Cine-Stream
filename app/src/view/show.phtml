@@ -2,6 +2,12 @@
 
 <?php ob_start() ?>
 
+    <div class="update-success"> <!-- CSS UPDATE-SUCCESS = GENERAL-STYLE.CSS -->
+        <?php if (isset($_GET['message']) && $_GET['message'] === 'updated') { ?>
+            <p class="success-message">Film modifié avec succès</p>
+        <?php } ?>
+    </div>
+
 <div class="show-page">
     <div class="show-card">
         <div class="show-inner-card-top">
@@ -20,7 +26,7 @@
                 <div class="show-content-top">
                     <h3 class="show-title"><?= htmlspecialchars($film->getTitle()) ?></h3>
                     <div class="show-actions">
-                        <a class="update-btn" href="index.php?route=update&id=<?= htmlspecialchars($film->getId()) ?>">✏️</a>
+                        <a class="update-btn" href="index.php?route=update&id=<?= htmlspecialchars($film->getId()) ?>">✏️</a> <!-- BOUTONS DANS GENERAL-STYLE.CSS -->
                         <a class="delete-btn" href="index.php?route=delete&id=<?= htmlspecialchars($film->getId()) ?>"onclick="return confirm('Voulez-vous vraiment supprimer ce film ?');">❌</a>
                     </div> 
                 </div>
@@ -64,8 +70,12 @@
         <?php } else { ?>
             <p>Aucun synopsis disponible.</p>
         <?php } ?>
-    </div>      
+    </div>
+        
 </div>
+    <div class="return-box"> <!-- btn dans general-style.css -->
+        <a href="javascript:history.back();" class="return-btn">Retour a la page précédente</a>
+    </div>  
 </div>
 
 <?php $content = ob_get_clean() ?>
